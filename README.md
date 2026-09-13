@@ -356,7 +356,6 @@
             loadConfigFromCloud();
         });
 
-        // جلب البيانات من السحابة مباشرة عند فتح الصفحة من أي جهاز
         async function loadConfigFromCloud() {
             try {
                 const response = await fetch(`${API_URL}/latest`, {
@@ -507,7 +506,6 @@
                     currentConfig.adminPass = newPass;
                 }
 
-                // حفظ البيانات بالسحابة مع التوثيق بواسطة الـ Master Key
                 try {
                     const res = await fetch(API_URL, {
                         method: 'PUT',
