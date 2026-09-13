@@ -1,5 +1,3 @@
-[New A Plus.txt](https://github.com/user-attachments/files/32170611/New.A.Plus.txt)
-# A+_Gift
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
