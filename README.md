@@ -115,7 +115,7 @@
                     scrolling="no" 
                     frameborder="no" 
                     allow="autoplay" 
-                    src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/ahmed-habib-816298036/sets/muslim-list&amp;color=%23004d40&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=false">
+                    src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/ahmed-habib-816298036/sets/muslim-list&color=%23004d40&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false">
                 </iframe>
             </div>
         </div>
@@ -331,8 +331,6 @@
     </div>
 
     <script>
-     
-
         // JSONBin Integration Config
         const BIN_ID = "6aa70b4effd5d1605302775c";
         const API_KEY = "$2a$10$aE5HrQtOq9c.pmZ5/LENeebVURVzbsql90JeT43vDyKEsGtNSk7Xu";
@@ -354,14 +352,13 @@
 
         let currentConfig = Object.assign({}, defaultConfig);
 
-        window.addEventListener('DOMContentLoaded', () => {
-            loadConfigFromCloud();
-        });
-
+        // جلب البيانات من السحابة مباشرة عند فتح الصفحة من أي جهاز
         async function loadConfigFromCloud() {
             try {
                 const response = await fetch(`${API_URL}/latest`, {
-                    headers: { 'X-Master-Key': API_KEY }
+                    headers: {
+                        'X-Master-Key': API_KEY
+                    }
                 });
                 if (response.ok) {
                     const data = await response.json();
@@ -506,6 +503,7 @@
                     currentConfig.adminPass = newPass;
                 }
 
+                // حفظ البيانات بالسحابة مع التوثيق بواسطة الـ Master Key
                 try {
                     const res = await fetch(API_URL, {
                         method: 'PUT',
@@ -554,7 +552,7 @@
                 }).catch(() => {});
             } else {
                 navigator.clipboard.writeText(window.location.href);
-                showToast("تم نسخ رابط الصفحة للحافظة");
+                showToast("تم نسخ رابط الصفحة للمحافظة");
             }
         }
 
@@ -563,11 +561,10 @@
             document.getElementById('toastMsg').innerText = msg;
             toast.classList.remove('hidden');
             toast.classList.add('toast-slide-up');
-            setTimeout(() => { 
-                toast.classList.add('hidden');
-                toast.classList.remove('toast-slide-up');
-            }, 3000);
+            setTimeout(() => { toast.classList.add('hidden'); }, 3000);
         }
+
+        window.onload = loadConfigFromCloud;
     </script>
 </body>
 </html>
