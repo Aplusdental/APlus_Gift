@@ -331,25 +331,7 @@
     </div>
 
     <script>
-        // تنظيف وحذف أي عناصر أو نصوص عائمة طالعة فوق الهيكل من السيرفر تلقائياً
-        (function purgeUnwantedTextNodes() {
-            const clean = () => {
-                document.childNodes.forEach(node => {
-                    if (node.nodeType === Node.TEXT_NODE && (node.nodeValue.includes('DOCTYPE') || node.nodeValue.includes('APlus_Gift'))) {
-                        node.nodeValue = '';
-                    }
-                });
-                if (document.body) {
-                    Array.from(document.body.childNodes).forEach(node => {
-                        if (node.nodeType === Node.TEXT_NODE && (node.nodeValue.includes('DOCTYPE') || node.nodeValue.includes('APlus_Gift'))) {
-                            node.remove();
-                        }
-                    });
-                }
-            };
-            clean();
-            window.addEventListener('DOMContentLoaded', clean);
-        })();
+     
 
         // JSONBin Integration Config
         const BIN_ID = "6aa70b4effd5d1605302775c";
