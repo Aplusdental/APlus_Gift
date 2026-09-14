@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مركز العناية بالأسنان - NFC Smart Card</title>
+    <title>A+ Dental Clinic - NFC Smart Card</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -87,7 +87,7 @@
                 <div class="absolute -inset-1 rounded-full bg-cyanGlow-400/10 blur-md"></div>
             </div>
             
-            <h1 id="displayTitle" class="text-2xl font-bold cyan-gradient-text mb-1">عيادة الأسنان المتخصصة</h1>
+            <h1 id="displayTitle" class="text-2xl font-bold cyan-gradient-text mb-1">عيادة A+ للأسنان</h1>
             <p id="displaySubtitle" class="text-xs text-slate-300/80">راحتك وجمال ابتسامتك هي مسؤوليتنا الأولى</p>
             
             <div class="mt-4 p-3 rounded-xl glass-card border border-cyanGlow-400/20 max-w-xs mx-auto">
@@ -188,29 +188,37 @@
         <div class="space-y-3 mb-6">
             <h2 class="text-xs font-bold text-cyanGlow-400 uppercase tracking-wider px-1">تواصل مع العيادة</h2>
             
-            <div class="grid grid-cols-3 gap-2.5">
+            <div class="grid grid-cols-4 gap-2">
                 <!-- WhatsApp -->
-                <a id="btnWhatsapp" href="#" target="_blank" class="glass-card rounded-xl p-3 flex flex-col items-center justify-center gap-2 hover:bg-brandBlue-800/40 hover:border-emerald-500/50 transition-all group">
-                    <div class="w-10 h-10 rounded-full bg-emerald-600/20 text-emerald-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                <a id="btnWhatsapp" href="#" target="_blank" class="glass-card rounded-xl p-2.5 flex flex-col items-center justify-center gap-1.5 hover:bg-brandBlue-800/40 hover:border-emerald-500/50 transition-all group">
+                    <div class="w-9 h-9 rounded-full bg-emerald-600/20 text-emerald-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
                         <i class="fa-brands fa-whatsapp"></i>
                     </div>
-                    <span class="text-xs font-medium text-slate-200">واتساب العيادة</span>
+                    <span class="text-[11px] font-medium text-slate-200">واتساب</span>
                 </a>
 
                 <!-- Phone Direct Call -->
-                <a id="btnPhone" href="#" class="glass-card rounded-xl p-3 flex flex-col items-center justify-center gap-2 hover:bg-brandBlue-800/40 hover:border-cyanGlow-400/50 transition-all group">
-                    <div class="w-10 h-10 rounded-full bg-cyanGlow-500/20 text-cyanGlow-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                <a id="btnPhone" href="#" class="glass-card rounded-xl p-2.5 flex flex-col items-center justify-center gap-1.5 hover:bg-brandBlue-800/40 hover:border-cyanGlow-400/50 transition-all group">
+                    <div class="w-9 h-9 rounded-full bg-cyanGlow-500/20 text-cyanGlow-400 flex items-center justify-center text-base group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-phone"></i>
                     </div>
-                    <span class="text-xs font-medium text-slate-200">اتصال هاتفي</span>
+                    <span class="text-[11px] font-medium text-slate-200">اتصال</span>
                 </a>
 
                 <!-- Facebook Page Link -->
-                <a id="btnFacebook" href="https://www.facebook.com/profile.php?id=61588530307313" target="_blank" class="glass-card rounded-xl p-3 flex flex-col items-center justify-center gap-2 hover:bg-brandBlue-800/40 hover:border-blue-500/50 transition-all group">
-                    <div class="w-10 h-10 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                <a id="btnFacebook" href="https://www.facebook.com/profile.php?id=61588530307313" target="_blank" class="glass-card rounded-xl p-2.5 flex flex-col items-center justify-center gap-1.5 hover:bg-brandBlue-800/40 hover:border-blue-500/50 transition-all group">
+                    <div class="w-9 h-9 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-base group-hover:scale-110 transition-transform">
                         <i class="fa-brands fa-facebook-f"></i>
                     </div>
-                    <span class="text-xs font-medium text-slate-200">صفحة الفيسبوك</span>
+                    <span class="text-[11px] font-medium text-slate-200">فيسبوك</span>
+                </a>
+
+                <!-- Instagram Link -->
+                <a id="btnInstagram" href="https://www.instagram.com/aplus.77" target="_blank" class="glass-card rounded-xl p-2.5 flex flex-col items-center justify-center gap-1.5 hover:bg-brandBlue-800/40 hover:border-pink-500/50 transition-all group">
+                    <div class="w-9 h-9 rounded-full bg-pink-500/20 text-pink-400 flex items-center justify-center text-base group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>
+                    <span class="text-[11px] font-medium text-slate-200">انستغرام</span>
                 </a>
             </div>
         </div>
@@ -225,7 +233,7 @@
 
         <!-- Footer & Secret Admin Lock -->
         <div class="text-center mt-10 relative">
-            <p class="text-[11px] text-slate-400/50">جميع الحقوق محفوظة © عيادة الأسنان المتخصصة</p>
+            <p class="text-[11px] text-slate-400/50">جميع الحقوق محفوظة © عيادة A+ للأسنان</p>
             
             <button type="button" onclick="openAdminLogin(event)" class="mt-4 text-brandBlue-800 hover:text-cyanGlow-400 text-xs transition-colors p-2" title="دخول لوحة تحكم العيادة">
                 <i class="fa-solid fa-lock"></i>
@@ -295,6 +303,11 @@
                     <input type="text" id="inputFacebook" placeholder="https://www.facebook.com/profile.php?id=..." class="w-full bg-brandBlue-900/80 border border-brandBlue-800 rounded-lg p-2.5 text-slate-100 focus:outline-none focus:border-cyanGlow-400 text-left dir-ltr">
                 </div>
 
+                <div>
+                    <label class="block text-slate-200 mb-1 flex items-center gap-1.5"><i class="fa-brands fa-instagram text-pink-400"></i> رابط الانستغرام</label>
+                    <input type="text" id="inputInstagram" placeholder="https://www.instagram.com/aplus.77" class="w-full bg-brandBlue-900/80 border border-brandBlue-800 rounded-lg p-2.5 text-slate-100 focus:outline-none focus:border-cyanGlow-400 text-left dir-ltr">
+                </div>
+
                 <div class="border-t border-brandBlue-800 pt-3 mt-2">
                     <label class="block text-slate-200 mb-1 flex items-center gap-1.5"><i class="fa-solid fa-key text-cyanGlow-400"></i> تغيير كلمة سر اللوحة</label>
                     <input type="password" id="inputNewPassword" placeholder="كلمة سر جديدة..." class="w-full bg-brandBlue-900/80 border border-brandBlue-800 rounded-lg p-2.5 text-slate-100 focus:outline-none focus:border-cyanGlow-400">
@@ -316,12 +329,13 @@
 
     <script>
         const defaultConfig = {
-            title: "عيادة الأسنان المتخصصة",
+            title: "عيادة A+ للأسنان",
             subtitle: "راحتك وجمال ابتسامتك هي مسؤوليتنا الأولى",
             kafrLoc: "https://maps.google.com",
             reviewUrl: "https://g.page",
             whatsapp: "201000000000",
             facebook: "https://www.facebook.com/profile.php?id=61588530307313",
+            instagram: "https://www.instagram.com/aplus.77",
             logoBase64: "",
             adminPass: "dental2026"
         };
@@ -362,6 +376,7 @@
             document.getElementById('btnBooking').href = cleanWa ? `https://wa.me/${cleanWa}?text=${encodeURIComponent('مرحباً، أرغب في الاستفسار وحجز موعد للكشف في العيادة')}` : '#';
             document.getElementById('btnPhone').href = cleanWa ? `tel:+${cleanWa}` : '#';
             document.getElementById('btnFacebook').href = currentConfig.facebook || 'https://www.facebook.com/profile.php?id=61588530307313';
+            document.getElementById('btnInstagram').href = currentConfig.instagram || 'https://www.instagram.com/aplus.77';
         }
 
         function openAdminLogin(e) {
@@ -398,6 +413,7 @@
             document.getElementById('inputReviewUrl').value = currentConfig.reviewUrl;
             document.getElementById('inputWhatsapp').value = currentConfig.whatsapp;
             document.getElementById('inputFacebook').value = currentConfig.facebook;
+            document.getElementById('inputInstagram').value = currentConfig.instagram;
             document.getElementById('inputNewPassword').value = '';
         }
 
@@ -420,12 +436,14 @@
                 const revVal = document.getElementById('inputReviewUrl').value.trim();
                 const waVal = document.getElementById('inputWhatsapp').value.trim();
                 const fbVal = document.getElementById('inputFacebook').value.trim();
+                const igVal = document.getElementById('inputInstagram').value.trim();
 
                 if (titleVal !== "") currentConfig.title = titleVal;
                 if (kafrVal !== "") currentConfig.kafrLoc = kafrVal;
                 if (revVal !== "") currentConfig.reviewUrl = revVal;
                 if (waVal !== "") currentConfig.whatsapp = waVal;
                 if (fbVal !== "") currentConfig.facebook = fbVal;
+                if (igVal !== "") currentConfig.instagram = igVal;
                 
                 if (logoData !== null) {
                     currentConfig.logoBase64 = logoData;
