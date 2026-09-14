@@ -1,12 +1,14 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BMC - القائمة الإسلامية الذكية</title>
+    <title>مركز العناية بالأسنان - NFC Smart Card</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -18,10 +20,10 @@
             theme: {
                 extend: {
                     colors: {
-                        emerald: { 850: '#064e3b', 900: '#022c22', 950: '#011e17' },
-                        gold: { 100: '#fef3c7', 300: '#fde047', 400: '#facc15', 500: '#eab308', 600: '#ca8a04', 700: '#a16207' }
+                        medical: { 800: '#0f4c81', 900: '#0b3254', 950: '#071e34' },
+                        cyanGlow: { 300: '#67e8f9', 400: '#22d3ee', 500: '#06b6d4' }
                     },
-                    fontFamily: { tajawal: ['Tajawal', 'sans-serif'], amiri: ['Amiri', 'serif'] }
+                    fontFamily: { tajawal: ['Tajawal', 'sans-serif'] }
                 }
             }
         }
@@ -30,37 +32,36 @@
     <style>
         body {
             font-family: 'Tajawal', sans-serif;
-            background-color: #011e17;
-            background-image: radial-gradient(circle at 50% 0%, #064e3b 0%, #011e17 75%);
+            background-color: #071e34;
+            background-image: radial-gradient(circle at 50% 0%, #0f4c81 0%, #071e34 80%);
             min-height: 100vh;
         }
-        .font-quran { font-family: 'Amiri', serif; }
-        .islamic-pattern {
-            background-color: #011e17;
-            background-image: radial-gradient(#ca8a04 0.5px, transparent 0.5px), radial-gradient(#ca8a04 0.5px, #011e17 0.5px);
-            background-size: 20px 20px;
-            opacity: 0.05;
+        .dental-pattern {
+            background-color: #071e34;
+            background-image: radial-gradient(#22d3ee 0.5px, transparent 0.5px), radial-gradient(#22d3ee 0.5px, #071e34 0.5px);
+            background-size: 24px 24px;
+            opacity: 0.04;
         }
         .glass-card {
-            background: rgba(6, 78, 59, 0.35);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(202, 138, 4, 0.2);
+            background: rgba(15, 76, 129, 0.3);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(34, 211, 238, 0.25);
         }
-        .gold-border-glow { box-shadow: 0 0 15px rgba(202, 138, 4, 0.15); }
-        .gold-gradient-text {
-            background: linear-gradient(135deg, #fef3c7 0%, #facc15 50%, #ca8a04 100%);
+        .cyan-border-glow { box-shadow: 0 0 15px rgba(34, 211, 238, 0.2); }
+        .cyan-gradient-text {
+            background: linear-gradient(135deg, #ffffff 0%, #67e8f9 50%, #06b6d4 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .gold-gradient-bg { background: linear-gradient(135deg, #d97706 0%, #ca8a04 50%, #a16207 100%); }
+        .cyan-gradient-bg { background: linear-gradient(135deg, #22d3ee 0%, #0284c7 100%); }
         .toast-slide-up { animation: slideUp 0.3s ease-out forwards; }
         @keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
     </style>
 </head>
-<body class="text-slate-100 relative pb-12 selection:bg-gold-500 selection:text-slate-900">
+<body class="text-slate-100 relative pb-12 selection:bg-cyanGlow-400 selection:text-slate-900">
 
-    <div class="fixed inset-0 islamic-pattern pointer-events-none z-0"></div>
+    <div class="fixed inset-0 dental-pattern pointer-events-none z-0"></div>
 
     <!-- Public View Container -->
     <div class="relative z-10 max-w-md mx-auto px-4 pt-8 pb-20">
@@ -68,82 +69,100 @@
         <!-- Top Status Indicator -->
         <div class="flex justify-between items-center mb-6">
             <div class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-gold-400 animate-pulse"></span>
-                <span class="text-xs font-medium text-gold-300/80 tracking-wider">ميدالية NFC الذكية</span>
+                <span class="w-2.5 h-2.5 rounded-full bg-cyanGlow-400 animate-pulse"></span>
+                <span class="text-xs font-medium text-cyanGlow-300/90 tracking-wider">بطاقة العيادة الذكية NFC</span>
             </div>
-            <span class="text-[10px] bg-emerald-900/80 text-gold-400 border border-gold-500/30 px-2.5 py-1 rounded-full font-bold">إهداء رسمي</span>
+            <span class="text-[10px] bg-medical-900/80 text-cyanGlow-300 border border-cyanGlow-400/30 px-2.5 py-1 rounded-full font-bold">احجز موعدك</span>
         </div>
 
-        <!-- Main Card Header -->
+        <!-- Main Clinic Header -->
         <div class="text-center mb-6">
             <div class="relative inline-block mb-3">
-                <div id="logoContainer" class="w-24 h-24 rounded-full glass-card border-2 border-gold-500/50 flex items-center justify-center mx-auto gold-border-glow relative z-10 overflow-hidden p-1">
-                    <i id="defaultIcon" class="fa-solid fa-book-quran text-4xl text-gold-400"></i>
-                    <img id="customLogoImg" src="" alt="BMC Logo" class="w-full h-full object-cover rounded-full hidden">
+                <div id="logoContainer" class="w-24 h-24 rounded-full glass-card border-2 border-cyanGlow-400/50 flex items-center justify-center mx-auto cyan-border-glow relative z-10 overflow-hidden p-1">
+                    <i id="defaultIcon" class="fa-solid fa-tooth text-4xl text-cyanGlow-400"></i>
+                    <img id="customLogoImg" src="" alt="Clinic Logo" class="w-full h-full object-cover rounded-full hidden">
                 </div>
-                <div class="absolute -inset-1 rounded-full bg-gold-500/10 blur-sm"></div>
+                <div class="absolute -inset-1 rounded-full bg-cyanGlow-400/10 blur-sm"></div>
             </div>
             
-            <h1 id="displayTitle" class="text-2xl font-bold font-quran gold-gradient-text mb-1">BMC - Muslim List</h1>
-            <p id="displaySubtitle" class="text-xs text-emerald-200/80">تلاوات قرآنية عذبة وأذكار الصباح والمساء</p>
+            <h1 id="displayTitle" class="text-2xl font-bold cyan-gradient-text mb-1">عيادة الأسنان المتخصصة</h1>
+            <p id="displaySubtitle" class="text-xs text-cyan-200/80">ابتسامتك المشرقة تبدأ من هنا - أحدث تكنولوجيا طب الأسنان</p>
             
-            <div class="mt-4 p-3 rounded-xl glass-card border border-gold-500/20 max-w-xs mx-auto">
-                <p class="font-quran text-sm text-gold-300 leading-relaxed">
-                    "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ"
+            <div class="mt-4 p-3 rounded-xl glass-card border border-cyanGlow-400/20 max-w-xs mx-auto">
+                <p class="text-xs text-cyanGlow-300 leading-relaxed font-medium">
+                    <i class="fa-solid fa-clock text-cyanGlow-400 ml-1"></i> مواعيد العمل: يومياً من 2 ظهراً حتى 10 مساءً
                 </p>
-                <span class="text-[10px] text-emerald-300/60 mt-1 block">سورة الرعد - الآية 28</span>
             </div>
         </div>
 
-        <!-- Audio Player Section -->
-        <div class="glass-card rounded-2xl p-2.5 mb-6 gold-border-glow">
-            <div class="flex items-center justify-between px-3 py-2 border-b border-emerald-800/50 mb-2">
-                <div class="flex items-center gap-2">
-                    <i class="fa-brands fa-soundcloud text-orange-500 text-lg"></i>
-                    <span class="text-xs font-semibold text-slate-200">المشغل المباشر</span>
+        <!-- Book Appointment Call To Action -->
+        <div class="mb-6">
+            <a id="btnBooking" href="#" target="_blank" class="cyan-gradient-bg text-slate-950 rounded-2xl p-4 font-bold transition-all flex items-center justify-between group shadow-lg shadow-cyanGlow-500/20 active:scale-95">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-xl bg-slate-950/20 text-slate-950 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-sm font-black block">احجز موعد الكشف الآن</span>
+                        <span class="text-[11px] text-slate-800 font-medium">حجز مباشر عبر الواتساب مع موظف الاستقبال</span>
+                    </div>
                 </div>
-                <span class="text-[10px] text-emerald-300/70">قائمة معتمدة</span>
-            </div>
+                <i class="fa-solid fa-chevron-left text-slate-950 text-sm group-hover:-translate-x-1 transition-transform"></i>
+            </a>
+        </div>
 
-            <div class="rounded-xl overflow-hidden bg-emerald-950/80">
-                <iframe 
-                    id="scPlayer"
-                    width="100%" 
-                    height="300" 
-                    scrolling="no" 
-                    frameborder="no" 
-                    allow="autoplay" 
-                    src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/ahmed-habib-816298036/sets/muslim-list&color=%23004d40&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false">
-                </iframe>
+        <!-- Services Grid -->
+        <div class="space-y-3 mb-6">
+            <h2 class="text-xs font-bold text-cyanGlow-400 uppercase tracking-wider px-1 flex items-center gap-1.5">
+                <i class="fa-solid fa-kit-medical text-cyanGlow-300"></i> خدمات العيادة
+            </h2>
+            
+            <div class="grid grid-cols-2 gap-2.5 text-xs">
+                <div class="glass-card rounded-xl p-3 flex items-center gap-2.5">
+                    <i class="fa-solid fa-wand-magic-sparkles text-cyanGlow-400 text-base"></i>
+                    <span>تبييض بالليزر</span>
+                </div>
+                <div class="glass-card rounded-xl p-3 flex items-center gap-2.5">
+                    <i class="fa-solid fa-gem text-cyanGlow-400 text-base"></i>
+                    <span>تجميل وابتسامة هوليوود</span>
+                </div>
+                <div class="glass-card rounded-xl p-3 flex items-center gap-2.5">
+                    <i class="fa-solid fa-tooth text-cyanGlow-400 text-base"></i>
+                    <span>زراعة وتقويم الأسنان</span>
+                </div>
+                <div class="glass-card rounded-xl p-3 flex items-center gap-2.5">
+                    <i class="fa-solid fa-shield-halved text-cyanGlow-400 text-base"></i>
+                    <span>علاج الجذور والعصب</span>
+                </div>
             </div>
         </div>
 
         <!-- Branches Locations Section -->
         <div class="space-y-3 mb-6">
-            <h2 class="text-xs font-bold text-gold-400 uppercase tracking-wider px-1 flex items-center gap-1.5">
-                <i class="fa-solid fa-location-dot text-red-400"></i> فروع الشركة ومواقعنا
+            <h2 class="text-xs font-bold text-cyanGlow-400 uppercase tracking-wider px-1 flex items-center gap-1.5">
+                <i class="fa-solid fa-location-dot text-red-400"></i> موقع العيادة والفروع
             </h2>
             
             <div class="grid grid-cols-2 gap-2.5">
-                <!-- Branch 1: Kafr El-Sheikh -->
-                <a id="btnLocKafr" href="https://maps.google.com" target="_blank" class="glass-card rounded-xl p-3 flex flex-col items-center justify-center gap-2 hover:bg-emerald-800/40 hover:border-gold-500/50 transition-all group text-center">
+                <!-- Branch 1 -->
+                <a id="btnLocKafr" href="https://maps.google.com" target="_blank" class="glass-card rounded-xl p-3 flex flex-col items-center justify-center gap-2 hover:bg-medical-800/50 hover:border-cyanGlow-400/50 transition-all group text-center">
                     <div class="w-10 h-10 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-building"></i>
+                        <i class="fa-solid fa-hospital-user"></i>
                     </div>
                     <div>
-                        <span class="text-xs font-bold text-slate-100 block">فرع كفر الشيخ</span>
-                        <span class="text-[10px] text-emerald-300/70">فتح الخريطة <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-0.5"></i></span>
+                        <span class="text-xs font-bold text-slate-100 block">الفرع الرئيسي</span>
+                        <span class="text-[10px] text-cyan-300/70">فتح الموقع بالخريطة <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-0.5"></i></span>
                     </div>
                 </a>
 
-                <!-- Branch 2: Fifth Settlement -->
-                <a id="btnLocFifth" href="https://maps.google.com" target="_blank" class="glass-card rounded-xl p-3 flex flex-col items-center justify-center gap-2 hover:bg-emerald-800/40 hover:border-gold-500/50 transition-all group text-center">
-                    <div class="w-10 h-10 rounded-full bg-gold-500/20 text-gold-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-city"></i>
+                <!-- Branch 2 -->
+                <a id="btnLocFifth" href="https://maps.google.com" target="_blank" class="glass-card rounded-xl p-3 flex flex-col items-center justify-center gap-2 hover:bg-medical-800/50 hover:border-cyanGlow-400/50 transition-all group text-center">
+                    <div class="w-10 h-10 rounded-full bg-cyanGlow-500/20 text-cyanGlow-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-building-user"></i>
                     </div>
                     <div>
-                        <span class="text-xs font-bold text-slate-100 block">فرع التجمع الخامس</span>
-                        <span class="text-[10px] text-emerald-300/70">القاهرة الجديدة <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-0.5"></i></span>
+                        <span class="text-xs font-bold text-slate-100 block">الفرع الثاني</span>
+                        <span class="text-[10px] text-cyan-300/70">فتح الموقع بالخريطة <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-0.5"></i></span>
                     </div>
                 </a>
             </div>
@@ -151,82 +170,78 @@
 
         <!-- Google Reviews Button Section -->
         <div class="mb-6">
-            <a id="btnReview" href="https://g.page" target="_blank" class="glass-card rounded-2xl p-4 border border-gold-500/40 hover:bg-emerald-800/40 transition-all flex items-center justify-between group">
+            <a id="btnReview" href="https://g.page" target="_blank" class="glass-card rounded-2xl p-4 border border-cyanGlow-400/30 hover:bg-medical-800/40 transition-all flex items-center justify-between group">
                 <div class="flex items-center gap-3">
                     <div class="w-11 h-11 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-star"></i>
                     </div>
                     <div class="text-right">
-                        <div class="flex items-center gap-1 text-gold-400 text-xs mb-0.5">
+                        <div class="flex items-center gap-1 text-amber-400 text-xs mb-0.5">
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                         </div>
-                        <span class="text-xs font-bold text-slate-100 block">أضف تقييمك للشركة</span>
-                        <span class="text-[10px] text-emerald-300/70">رأيك يهمنا ويساعدنا على التطوير</span>
+                        <span class="text-xs font-bold text-slate-100 block">اراء وتقييمات المرضى</span>
+                        <span class="text-[10px] text-cyan-300/70">شاركنا تجربتك وتقييمك للعيادة على جوجل</span>
                     </div>
                 </div>
-                <i class="fa-solid fa-chevron-left text-gold-400 text-sm group-hover:-translate-x-1 transition-transform"></i>
+                <i class="fa-solid fa-chevron-left text-cyanGlow-400 text-sm group-hover:-translate-x-1 transition-transform"></i>
             </a>
         </div>
 
         <!-- Social Links -->
         <div class="space-y-3 mb-6">
-            <h2 class="text-xs font-bold text-gold-400 uppercase tracking-wider px-1">تواصل معنا</h2>
+            <h2 class="text-xs font-bold text-cyanGlow-400 uppercase tracking-wider px-1">تواصل مع العيادة</h2>
             
             <div class="grid grid-cols-3 gap-2.5">
                 <!-- WhatsApp -->
-                <a id="btnWhatsapp" href="#" target="_blank" class="glass-card rounded-xl p-3 flex flex-col items-center justify-center gap-2 hover:bg-emerald-800/40 hover:border-emerald-500/50 transition-all group">
+                <a id="btnWhatsapp" href="#" target="_blank" class="glass-card rounded-xl p-3 flex flex-col items-center justify-center gap-2 hover:bg-medical-800/40 hover:border-emerald-500/50 transition-all group">
                     <div class="w-10 h-10 rounded-full bg-emerald-600/20 text-emerald-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
                         <i class="fa-brands fa-whatsapp"></i>
                     </div>
                     <span class="text-xs font-medium text-slate-200 flex items-center gap-1">
-                        <i class="fa-brands fa-whatsapp text-emerald-400"></i> واتساب
+                        واتساب العيادة
                     </span>
                 </a>
 
-                <!-- LinkedIn -->
-                <a id="btnLinkedin" href="#" target="_blank" class="glass-card rounded-xl p-3 flex flex-col items-center justify-center gap-2 hover:bg-emerald-800/40 hover:border-gold-500/50 transition-all group">
-                    <div class="w-10 h-10 rounded-full bg-blue-600/20 text-blue-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
-                        <i class="fa-brands fa-linkedin-in"></i>
+                <!-- Phone Direct Call -->
+                <a id="btnPhone" href="#" class="glass-card rounded-xl p-3 flex flex-col items-center justify-center gap-2 hover:bg-medical-800/40 hover:border-cyanGlow-400/50 transition-all group">
+                    <div class="w-10 h-10 rounded-full bg-cyanGlow-500/20 text-cyanGlow-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-phone"></i>
                     </div>
                     <span class="text-xs font-medium text-slate-200 flex items-center gap-1">
-                        <i class="fa-brands fa-linkedin text-blue-400"></i> لينكد إن
+                        اتصال مباشر
                     </span>
                 </a>
 
                 <!-- Facebook -->
-                <a id="btnFacebook" href="#" target="_blank" class="glass-card rounded-xl p-3 flex flex-col items-center justify-center gap-2 hover:bg-emerald-800/40 hover:border-gold-500/50 transition-all group">
-                    <div class="w-10 h-10 rounded-full bg-blue-500/20 text-blue-300 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                <a id="btnFacebook" href="#" target="_blank" class="glass-card rounded-xl p-3 flex flex-col items-center justify-center gap-2 hover:bg-medical-800/40 hover:border-blue-500/50 transition-all group">
+                    <div class="w-10 h-10 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
                         <i class="fa-brands fa-facebook-f"></i>
                     </div>
                     <span class="text-xs font-medium text-slate-200 flex items-center gap-1">
-                        <i class="fa-brands fa-facebook text-blue-400"></i> فيسبوك
+                        فيسبوك
                     </span>
                 </a>
             </div>
         </div>
 
-        <!-- Quick Actions -->
-        <div class="flex gap-2">
-            <a id="btnSoundCloudDirect" href="https://soundcloud.com/ahmed-habib-816298036/sets/muslim-list" target="_blank" class="flex-1 glass-card hover:bg-emerald-800/40 border border-gold-500/30 rounded-xl py-3 px-4 flex items-center justify-center gap-2 text-gold-300 font-medium text-xs transition-all">
-                <i class="fa-brands fa-soundcloud text-orange-400 text-sm"></i>
-                <span>فتح في SoundCloud</span>
-            </a>
-            
-            <button type="button" onclick="shareLink(event)" class="flex-1 gold-gradient-bg text-slate-950 font-bold rounded-xl py-3 px-4 flex items-center justify-center gap-2 text-xs shadow-lg shadow-gold-500/20 active:scale-95 transition-all">
+        <!-- Quick Share Action -->
+        <div>
+            <button type="button" onclick="shareLink(event)" class="w-full glass-card hover:bg-medical-800/50 text-cyanGlow-300 font-bold rounded-xl py-3 px-4 flex items-center justify-center gap-2 text-xs border border-cyanGlow-400/40 active:scale-95 transition-all">
                 <i class="fa-solid fa-share-nodes text-sm"></i>
-                <span>مشاركة الرابط</span>
+                <span>مشاركة كارت العيادة الذكي</span>
             </button>
         </div>
 
         <!-- Footer & Admin Trigger -->
         <div class="text-center mt-10 relative">
-            <p class="text-[11px] text-emerald-300/40">صدقة جارية - تقبل الله منا ومنكم صالح الأعمال</p>
+            <p class="text-[11px] text-cyan-300/40">جميع الحقوق محفوظة © عيادة الأسنان المتخصصة</p>
             
-            <button type="button" onclick="openAdminLogin(event)" class="mt-4 text-emerald-800 hover:text-gold-500 text-xs transition-colors p-2" title="دخول إدارة الشركة">
+            <!-- Secret Admin Lock Icon -->
+            <button type="button" onclick="openAdminLogin(event)" class="mt-4 text-medical-800 hover:text-cyanGlow-400 text-xs transition-colors p-2" title="دخول لوحة تحكم العيادة">
                 <i class="fa-solid fa-lock"></i>
             </button>
         </div>
@@ -235,162 +250,120 @@
 
     <!-- Admin Login Modal -->
     <div id="loginModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-        <div class="glass-card bg-emerald-950 border border-gold-500/40 rounded-2xl w-full max-w-xs p-5 space-y-4 text-right">
-            <div class="flex justify-between items-center border-b border-emerald-800/60 pb-3">
-                <h3 class="text-sm font-bold text-gold-400 flex items-center gap-2">
-                    <i class="fa-solid fa-user-shield"></i> لوحة إدارة الشركة (BMC)
+        <div class="glass-card bg-medical-950 border border-cyanGlow-400/40 rounded-2xl w-full max-w-xs p-5 space-y-4 text-right">
+            <div class="flex justify-between items-center border-b border-medical-800 pb-3">
+                <h3 class="text-sm font-bold text-cyanGlow-400 flex items-center gap-2">
+                    <i class="fa-solid fa-user-shield"></i> لوحة إدارة العيادة
                 </h3>
                 <button type="button" onclick="closeAdminLogin(event)" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
             </div>
             
             <div>
-                <label class="block text-emerald-200 text-xs mb-1">كلمة السر</label>
-                <input type="password" id="adminPasswordInput" placeholder="أدخل كلمة السر..." class="w-full bg-emerald-900/60 border border-emerald-700/50 rounded-lg p-2.5 text-slate-100 text-xs focus:outline-none focus:border-gold-400">
+                <label class="block text-cyan-200 text-xs mb-1">كلمة السر</label>
+                <input type="password" id="adminPasswordInput" placeholder="أدخل كلمة السر..." class="w-full bg-medical-900/60 border border-medical-800 rounded-lg p-2.5 text-slate-100 text-xs focus:outline-none focus:border-cyanGlow-400">
             </div>
 
-            <button type="button" onclick="verifyAdminPass(event)" class="w-full gold-gradient-bg text-slate-950 font-bold py-2.5 rounded-lg text-xs">دخول اللوحة</button>
+            <button type="button" onclick="verifyAdminPass(event)" class="w-full cyan-gradient-bg text-slate-950 font-bold py-2.5 rounded-lg text-xs">دخول اللوحة</button>
         </div>
     </div>
 
     <!-- Admin Control Panel Modal -->
     <div id="adminPanelModal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-        <div class="glass-card bg-emerald-950 border border-gold-500/50 rounded-2xl w-full max-w-md p-5 space-y-4 text-right max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center border-b border-emerald-800/60 pb-3">
-                <h3 class="text-base font-bold text-gold-400 flex items-center gap-2">
-                    <i class="fa-solid fa-sliders"></i> التحكم في البيانات 
+        <div class="glass-card bg-medical-950 border border-cyanGlow-400/50 rounded-2xl w-full max-w-md p-5 space-y-4 text-right max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b border-medical-800 pb-3">
+                <h3 class="text-base font-bold text-cyanGlow-400 flex items-center gap-2">
+                    <i class="fa-solid fa-sliders"></i> التحكم في بيانات العيادة
                 </h3>
                 <button type="button" onclick="closeAdminPanel(event)" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
 
             <div class="space-y-3 text-xs">
                 <div>
-                    <label class="block text-emerald-200 mb-1 flex items-center gap-1.5"><i class="fa-solid fa-image text-gold-400"></i> لوجو الشركة الرسمي</label>
-                    <input type="file" id="inputLogoFile" accept="image/*" class="w-full bg-emerald-900/60 border border-emerald-700/50 rounded-lg p-2 text-slate-100 text-xs file:mr-2 file:py-1 file:px-2 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-gold-500 file:text-slate-950 hover:file:bg-gold-400">
-                    <button type="button" onclick="resetLogo(event)" class="text-[10px] text-red-400 hover:underline mt-1 block">استعادة اللوجو الافتراضي</button>
+                    <label class="block text-cyan-200 mb-1 flex items-center gap-1.5"><i class="fa-solid fa-image text-cyanGlow-400"></i> شعار العيادة (اللوجو)</label>
+                    <input type="file" id="inputLogoFile" accept="image/*" class="w-full bg-medical-900/60 border border-medical-800 rounded-lg p-2 text-slate-100 text-xs file:mr-2 file:py-1 file:px-2 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-cyanGlow-400 file:text-slate-950">
+                    <button type="button" onclick="resetLogo(event)" class="text-[10px] text-red-400 hover:underline mt-1 block">استعادة الشعار الافتراضي</button>
                 </div>
 
                 <div>
-                    <label class="block text-emerald-200 mb-1">اسم القائمة / عنوان الشركة</label>
-                    <input type="text" id="inputTitle" placeholder="اتركه فارغاً للإبقاء على الحالي" class="w-full bg-emerald-900/60 border border-emerald-700/50 rounded-lg p-2.5 text-slate-100 focus:outline-none focus:border-gold-400">
+                    <label class="block text-cyan-200 mb-1">اسم العيادة / الطبيب</label>
+                    <input type="text" id="inputTitle" placeholder="اتركه فارغاً للإبقاء على الحالي" class="w-full bg-medical-900/60 border border-medical-800 rounded-lg p-2.5 text-slate-100 focus:outline-none focus:border-cyanGlow-400">
+                </div>
+
+                <div class="border-t border-medical-800 pt-2">
+                    <label class="block text-cyan-200 mb-1 flex items-center gap-1.5"><i class="fa-solid fa-map-location-dot text-red-400"></i> رابط خرائط الفرع الرئيسي</label>
+                    <input type="text" id="inputKafrLoc" placeholder="رابط Google Maps للعيادة" class="w-full bg-medical-900/60 border border-medical-800 rounded-lg p-2.5 text-slate-100 focus:outline-none focus:border-cyanGlow-400 text-left dir-ltr">
                 </div>
 
                 <div>
-                    <label class="block text-emerald-200 mb-1 flex items-center gap-1.5"><i class="fa-brands fa-soundcloud text-orange-400"></i> رابط SoundCloud القائمة</label>
-                    <input type="text" id="inputSoundcloud" placeholder="مثال: https://soundcloud.com/..." class="w-full bg-emerald-900/60 border border-emerald-700/50 rounded-lg p-2.5 text-slate-100 focus:outline-none focus:border-gold-400 text-left dir-ltr">
-                </div>
-
-                <div class="border-t border-emerald-800/60 pt-2">
-                    <label class="block text-emerald-200 mb-1 flex items-center gap-1.5"><i class="fa-solid fa-map-location-dot text-red-400"></i> رابط خرائط فرع كفر الشيخ</label>
-                    <input type="text" id="inputKafrLoc" placeholder="رابط Google Maps لفرع كفر الشيخ" class="w-full bg-emerald-900/60 border border-emerald-700/50 rounded-lg p-2.5 text-slate-100 focus:outline-none focus:border-gold-400 text-left dir-ltr">
+                    <label class="block text-cyan-200 mb-1 flex items-center gap-1.5"><i class="fa-solid fa-map-location-dot text-cyanGlow-400"></i> رابط خرائط الفرع الثاني</label>
+                    <input type="text" id="inputFifthLoc" placeholder="رابط Google Maps للفرع الثاني" class="w-full bg-medical-900/60 border border-medical-800 rounded-lg p-2.5 text-slate-100 focus:outline-none focus:border-cyanGlow-400 text-left dir-ltr">
                 </div>
 
                 <div>
-                    <label class="block text-emerald-200 mb-1 flex items-center gap-1.5"><i class="fa-solid fa-map-location-dot text-gold-400"></i> رابط خرائط فرع التجمع الخامس</label>
-                    <input type="text" id="inputFifthLoc" placeholder="رابط Google Maps لفرع التجمع الخامس" class="w-full bg-emerald-900/60 border border-emerald-700/50 rounded-lg p-2.5 text-slate-100 focus:outline-none focus:border-gold-400 text-left dir-ltr">
+                    <label class="block text-cyan-200 mb-1 flex items-center gap-1.5"><i class="fa-solid fa-star text-amber-400"></i> رابط تقييم جوجل (Google Review)</label>
+                    <input type="text" id="inputReviewUrl" placeholder="رابط التقييم" class="w-full bg-medical-900/60 border border-medical-800 rounded-lg p-2.5 text-slate-100 focus:outline-none focus:border-cyanGlow-400 text-left dir-ltr">
+                </div>
+
+                <div class="border-t border-medical-800 pt-2">
+                    <label class="block text-cyan-200 mb-1 flex items-center gap-1.5"><i class="fa-brands fa-whatsapp text-emerald-400"></i> رقم الواتساب للحجز (2010XXXXXXXX)</label>
+                    <input type="text" id="inputWhatsapp" placeholder="مثال: 201012345678" class="w-full bg-medical-900/60 border border-medical-800 rounded-lg p-2.5 text-slate-100 focus:outline-none focus:border-cyanGlow-400 text-left dir-ltr">
                 </div>
 
                 <div>
-                    <label class="block text-emerald-200 mb-1 flex items-center gap-1.5"><i class="fa-solid fa-star text-amber-400"></i> رابط تقييم العملاء (Google Review Link)</label>
-                    <input type="text" id="inputReviewUrl" placeholder="رابط تقييم جوجل لشركتكم" class="w-full bg-emerald-900/60 border border-emerald-700/50 rounded-lg p-2.5 text-slate-100 focus:outline-none focus:border-gold-400 text-left dir-ltr">
+                    <label class="block text-cyan-200 mb-1 flex items-center gap-1.5"><i class="fa-brands fa-facebook text-blue-400"></i> رابط صفحة الفيسبوك</label>
+                    <input type="text" id="inputFacebook" placeholder="رابط الصفحة" class="w-full bg-medical-900/60 border border-medical-800 rounded-lg p-2.5 text-slate-100 focus:outline-none focus:border-cyanGlow-400 text-left dir-ltr">
                 </div>
 
-                <div class="border-t border-emerald-800/60 pt-2">
-                    <label class="block text-emerald-200 mb-1 flex items-center gap-1.5"><i class="fa-brands fa-whatsapp text-emerald-400"></i> رقم الواتساب الرسمي (2010XXXXXXXX)</label>
-                    <input type="text" id="inputWhatsapp" placeholder="مثال: 201012345678" class="w-full bg-emerald-900/60 border border-emerald-700/50 rounded-lg p-2.5 text-slate-100 focus:outline-none focus:border-gold-400 text-left dir-ltr">
-                </div>
-
-                <div>
-                    <label class="block text-emerald-200 mb-1 flex items-center gap-1.5"><i class="fa-brands fa-linkedin text-blue-400"></i> رابط صفحة LinkedIn</label>
-                    <input type="text" id="inputLinkedin" placeholder="اتركه فارغاً للإبقاء على الحالي" class="w-full bg-emerald-900/60 border border-emerald-700/50 rounded-lg p-2.5 text-slate-100 focus:outline-none focus:border-gold-400 text-left dir-ltr">
-                </div>
-
-                <div>
-                    <label class="block text-emerald-200 mb-1 flex items-center gap-1.5"><i class="fa-brands fa-facebook text-blue-400"></i> رابط صفحة Facebook</label>
-                    <input type="text" id="inputFacebook" placeholder="اتركه فارغاً للإبقاء على الحالي" class="w-full bg-emerald-900/60 border border-emerald-700/50 rounded-lg p-2.5 text-slate-100 focus:outline-none focus:border-gold-400 text-left dir-ltr">
-                </div>
-
-                <div class="border-t border-emerald-800/60 pt-3 mt-2">
-                    <label class="block text-emerald-200 mb-1 flex items-center gap-1.5"><i class="fa-solid fa-key text-gold-400"></i> تغيير كلمة سر اللوحة</label>
-                    <input type="password" id="inputNewPassword" placeholder="كلمة سر جديدة (اختياري)..." class="w-full bg-emerald-900/60 border border-emerald-700/50 rounded-lg p-2.5 text-slate-100 focus:outline-none focus:border-gold-400">
+                <div class="border-t border-medical-800 pt-3 mt-2">
+                    <label class="block text-cyan-200 mb-1 flex items-center gap-1.5"><i class="fa-solid fa-key text-cyanGlow-400"></i> تغيير كلمة سر اللوحة</label>
+                    <input type="password" id="inputNewPassword" placeholder="كلمة سر جديدة (اختياري)..." class="w-full bg-medical-900/60 border border-medical-800 rounded-lg p-2.5 text-slate-100 focus:outline-none focus:border-cyanGlow-400">
                 </div>
             </div>
 
             <div class="flex gap-2 pt-3">
-                <button type="button" id="saveBtn" onclick="saveAdminSettings(event)" class="flex-1 gold-gradient-bg text-slate-950 font-bold py-2.5 rounded-lg text-xs shadow-md">حفظ وتحديث التغييرات</button>
-                <button type="button" onclick="closeAdminPanel(event)" class="px-4 bg-emerald-900 text-slate-300 rounded-lg text-xs hover:bg-emerald-800">إلغاء</button>
+                <button type="button" onclick="saveAdminSettings(event)" class="flex-1 cyan-gradient-bg text-slate-950 font-bold py-2.5 rounded-lg text-xs shadow-md">حفظ وتحديث التغييرات</button>
+                <button type="button" onclick="closeAdminPanel(event)" class="px-4 bg-medical-900 text-slate-300 rounded-lg text-xs hover:bg-medical-800">إلغاء</button>
             </div>
         </div>
     </div>
 
     <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-4 left-1/2 -translate-x-1/2 bg-gold-500 text-slate-950 px-4 py-2 rounded-full font-bold text-xs shadow-lg hidden z-50 flex items-center gap-2">
+    <div id="toast" class="fixed bottom-4 left-1/2 -translate-x-1/2 bg-cyanGlow-400 text-slate-950 px-4 py-2 rounded-full font-bold text-xs shadow-lg hidden z-50 flex items-center gap-2">
         <i class="fa-solid fa-check-circle"></i>
         <span id="toastMsg">تم التحديث بنجاح</span>
     </div>
 
     <script>
-        // JSONBin Integration Config
-        const BIN_ID = "6aa5ef51ffd5d16053ffe22e";
-        const API_KEY = "$2a$10$aE5HrQtOq9c.pmZ5/LENeebVURVzbsql90JeT43vDyKEsGtNSk7Xu";
-        const API_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
-
+        // Default Dental Clinic Config
         const defaultConfig = {
-            title: "BMC - Muslim List",
-            subtitle: "تلاوات قرآنية عذبة وأذكار الصباح والمساء",
-            soundcloudUrl: "https://soundcloud.com/ahmed-habib-816298036/sets/muslim-list",
+            title: "عيادة الأسنان المتخصصة",
+            subtitle: "ابتسامتك المشرقة تبدأ من هنا - أحدث تكنولوجيا طب الأسنان",
             kafrLoc: "https://maps.google.com",
             fifthLoc: "https://maps.google.com",
             reviewUrl: "https://g.page",
             whatsapp: "201000000000",
-            linkedin: "https://linkedin.com",
             facebook: "https://facebook.com",
             logoBase64: "",
-            adminPass: "bmc2026"
+            adminPass: "dental2026"
         };
 
         let currentConfig = Object.assign({}, defaultConfig);
 
-        // جلب البيانات من السحابة مباشرة عند فتح الصفحة من أي جهاز
-        async function loadConfigFromCloud() {
-            try {
-                const response = await fetch(`${API_URL}/latest`, {
-                    headers: {
-                        'X-Master-Key': API_KEY
-                    }
-                });
-                if (response.ok) {
-                    const data = await response.json();
-                    currentConfig = Object.assign({}, defaultConfig, data.record);
-                    localStorage.setItem('bmc_nfc_global_config', JSON.stringify(currentConfig));
-                } else {
-                    loadLocalFallback();
-                }
-            } catch (error) {
-                console.error("Cloud fetch failed, using local cache:", error);
-                loadLocalFallback();
-            }
-            applyConfigToUI();
-        }
-
-        function loadLocalFallback() {
-            const saved = localStorage.getItem('bmc_nfc_global_config');
+        function loadConfig() {
+            const saved = localStorage.getItem('dental_nfc_global_config');
             if (saved) {
                 try {
-                    currentConfig = Object.assign({}, defaultConfig, JSON.parse(saved));
+                    const parsed = JSON.parse(saved);
+                    currentConfig = Object.assign({}, defaultConfig, parsed);
                 } catch(e) {}
             }
-        }
-
-        function formatSoundCloudEmbedUrl(url) {
-            if (!url) return "";
-            if (url.includes('w.soundcloud.com/player')) return url;
-            let cleanUrl = url.split('?')[0];
-            return `https://w.soundcloud.com/player/?url=${encodeURIComponent(cleanUrl)}&color=%23004d40&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false`;
+            applyConfigToUI();
         }
 
         function applyConfigToUI() {
             document.getElementById('displayTitle').innerText = currentConfig.title;
             
+            // Logo Image
             const defaultIcon = document.getElementById('defaultIcon');
             const customLogoImg = document.getElementById('customLogoImg');
 
@@ -403,20 +376,20 @@
                 defaultIcon.classList.remove('hidden');
             }
 
-            if (currentConfig.soundcloudUrl) {
-                document.getElementById('scPlayer').src = formatSoundCloudEmbedUrl(currentConfig.soundcloudUrl);
-                document.getElementById('btnSoundCloudDirect').href = currentConfig.soundcloudUrl.split('?')[0];
-            }
-
+            // Branches & Reviews Links
             document.getElementById('btnLocKafr').href = currentConfig.kafrLoc || '#';
             document.getElementById('btnLocFifth').href = currentConfig.fifthLoc || '#';
             document.getElementById('btnReview').href = currentConfig.reviewUrl || '#';
 
-            document.getElementById('btnWhatsapp').href = currentConfig.whatsapp ? `https://wa.me/${currentConfig.whatsapp.replace(/[^0-9]/g, '')}` : '#';
-            document.getElementById('btnLinkedin').href = currentConfig.linkedin || '#';
+            // Contact Links
+            const cleanWa = currentConfig.whatsapp ? currentConfig.whatsapp.replace(/[^0-9]/g, '') : '';
+            document.getElementById('btnWhatsapp').href = cleanWa ? `https://wa.me/${cleanWa}` : '#';
+            document.getElementById('btnBooking').href = cleanWa ? `https://wa.me/${cleanWa}?text=${encodeURIComponent('مرحباً، أرغب في حجز موعد للكشف في العيادة')}` : '#';
+            document.getElementById('btnPhone').href = cleanWa ? `tel:+${cleanWa}` : '#';
             document.getElementById('btnFacebook').href = currentConfig.facebook || '#';
         }
 
+        // Admin Actions
         function openAdminLogin(e) {
             if (e) e.preventDefault();
             document.getElementById('adminPasswordInput').value = '';
@@ -447,12 +420,10 @@
 
         function populateAdminFields() {
             document.getElementById('inputTitle').value = currentConfig.title;
-            document.getElementById('inputSoundcloud').value = currentConfig.soundcloudUrl;
             document.getElementById('inputKafrLoc').value = currentConfig.kafrLoc;
             document.getElementById('inputFifthLoc').value = currentConfig.fifthLoc;
             document.getElementById('inputReviewUrl').value = currentConfig.reviewUrl;
             document.getElementById('inputWhatsapp').value = currentConfig.whatsapp;
-            document.getElementById('inputLinkedin').value = currentConfig.linkedin;
             document.getElementById('inputFacebook').value = currentConfig.facebook;
             document.getElementById('inputNewPassword').value = '';
         }
@@ -464,33 +435,25 @@
             showToast("تم إزالة اللوجو المخصص");
         }
 
-        async function saveAdminSettings(e) {
+        function saveAdminSettings(e) {
             if (e) e.preventDefault();
-
-            const saveBtn = document.getElementById('saveBtn');
-            saveBtn.disabled = true;
-            saveBtn.innerText = "جاري الحفظ بالسحابة...";
 
             const fileInput = document.getElementById('inputLogoFile');
             const newPass = document.getElementById('inputNewPassword').value.trim();
 
-            const performSave = async (logoData) => {
+            const performSave = (logoData) => {
                 const titleVal = document.getElementById('inputTitle').value.trim();
-                const scVal = document.getElementById('inputSoundcloud').value.trim();
                 const kafrVal = document.getElementById('inputKafrLoc').value.trim();
                 const fifthVal = document.getElementById('inputFifthLoc').value.trim();
                 const revVal = document.getElementById('inputReviewUrl').value.trim();
                 const waVal = document.getElementById('inputWhatsapp').value.trim();
-                const liVal = document.getElementById('inputLinkedin').value.trim();
                 const fbVal = document.getElementById('inputFacebook').value.trim();
 
                 if (titleVal !== "") currentConfig.title = titleVal;
-                if (scVal !== "") currentConfig.soundcloudUrl = scVal;
                 if (kafrVal !== "") currentConfig.kafrLoc = kafrVal;
                 if (fifthVal !== "") currentConfig.fifthLoc = fifthVal;
                 if (revVal !== "") currentConfig.reviewUrl = revVal;
                 if (waVal !== "") currentConfig.whatsapp = waVal;
-                if (liVal !== "") currentConfig.linkedin = liVal;
                 if (fbVal !== "") currentConfig.facebook = fbVal;
                 
                 if (logoData !== null) {
@@ -501,32 +464,10 @@
                     currentConfig.adminPass = newPass;
                 }
 
-                // حفظ البيانات بالسحابة مع التوثيق بواسطة الـ Master Key
-                try {
-                    const res = await fetch(API_URL, {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-Master-Key': API_KEY
-                        },
-                        body: JSON.stringify(currentConfig)
-                    });
-
-                    if (res.ok) {
-                        localStorage.setItem('bmc_nfc_global_config', JSON.stringify(currentConfig));
-                        applyConfigToUI();
-                        closeAdminPanel();
-                        showToast("تم الحفظ بالسحابة والتسميع على كافة الأجهزة!");
-                    } else {
-                        showToast("خطأ في الاتصال بالسحابة!");
-                    }
-                } catch (err) {
-                    console.error("Save failed:", err);
-                    showToast("فشل الاتصال بالسحابة، تم الحفظ محلياً فقط");
-                } finally {
-                    saveBtn.disabled = false;
-                    saveBtn.innerText = "حفظ وتحديث التغييرات";
-                }
+                localStorage.setItem('dental_nfc_global_config', JSON.stringify(currentConfig));
+                applyConfigToUI();
+                closeAdminPanel();
+                showToast("تم حفظ وتحديث التغييرات بنجاح!");
             };
 
             if (fileInput.files && fileInput.files[0]) {
@@ -545,12 +486,12 @@
             if (navigator.share) {
                 navigator.share({
                     title: currentConfig.title,
-                    text: 'استمع إلى قائمة الأذكار والقرآن الكريم',
+                    text: 'تفضل بزيارة كارت عيادة الأسنان للحجز والمعلومات',
                     url: window.location.href,
                 }).catch(() => {});
             } else {
                 navigator.clipboard.writeText(window.location.href);
-                showToast("تم نسخ رابط الصفحة للمحافظة");
+                showToast("تم نسخ رابط العيادة للحافظة");
             }
         }
 
@@ -559,10 +500,10 @@
             document.getElementById('toastMsg').innerText = msg;
             toast.classList.remove('hidden');
             toast.classList.add('toast-slide-up');
-            setTimeout(() => { toast.classList.add('hidden'); }, 3000);
+            setTimeout(() => { toast.classList.add('hidden'); }, 2500);
         }
 
-        window.onload = loadConfigFromCloud;
+        window.onload = loadConfig;
     </script>
 </body>
 </html>
