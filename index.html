@@ -333,6 +333,9 @@
     </div>
 
     <script>
+        // الإصدار الجديد المحدث - لتجاوز الكاش القديم تلقائياً
+        const CONFIG_VERSION = "v_2026_01";
+
         const defaultConfig = {
             title: "A+ Dental Center",
             subtitle: "مركز A+ لطب وتجميل الأسنان - أحدث التقنيات لرعاية ابتسامتك",
@@ -349,11 +352,18 @@
         let currentConfig = Object.assign({}, defaultConfig);
 
         function loadConfig() {
+            const savedVersion = localStorage.getItem('dental_config_version');
+            
+            // إذا كان الإصدار قديم، قم بتحديث الكاش محلياً ليعتمد التحديثات الجديدة فوراً
+            if (savedVersion !== CONFIG_VERSION) {
+                localStorage.removeItem('dental_nfc_global_config');
+                localStorage.setItem('dental_config_version', CONFIG_VERSION);
+            }
+
             const saved = localStorage.getItem('dental_nfc_global_config');
             if (saved) {
                 try {
                     const parsed = JSON.parse(saved);
-                    // دمج البيانات الافتراضية مع المخزنة لمنع فقدان الروابط الأساسية
                     currentConfig = Object.assign({}, defaultConfig, parsed);
                 } catch(e) {
                     currentConfig = Object.assign({}, defaultConfig);
@@ -487,7 +497,7 @@
                 localStorage.setItem('dental_nfc_global_config', JSON.stringify(currentConfig));
                 applyConfigToUI();
                 closeAdminPanel();
-                showToast("تم حفظ وتحديث التغييرات بنجاح!");
+                showToast("تم حفظ التغييرات بنجاح!");
             };
 
             if (fileInput.files && fileInput.files[0]) {
