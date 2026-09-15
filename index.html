@@ -320,7 +320,7 @@
             </div>
 
             <div class="flex gap-2 pt-3">
-                <button type="button" onclick="saveAdminSettings(event)" class="flex-1 btn-gradient-bg text-white font-bold py-2.5 rounded-lg text-xs shadow-md">حفظ والتحديث المباشر</button>
+                <button type="button" id="btnSaveConfig" onclick="saveAdminSettings(event)" class="flex-1 btn-gradient-bg text-white font-bold py-2.5 rounded-lg text-xs shadow-md">حفظ والتحديث المباشر</button>
                 <button type="button" onclick="closeAdminPanel(event)" class="px-4 bg-aplusNavy-900 text-slate-300 rounded-lg text-xs hover:bg-aplusNavy-800">إلغاء</button>
             </div>
         </div>
@@ -333,51 +333,75 @@
     </div>
 
     <script>
-        // الإصدار الجديد المحدث - لتجاوز الكاش القديم تلقائياً
-        const CONFIG_VERSION = "v_2026_01";
+        // إعدادات السيرفر السحابي (JSONBin)
+        const JSONBIN_ID = "6aa96b9cac6210605ad11337";
+        const JSONBIN_SECRET_KEY = "$2a$10$aE5HrQtOq9c.pmZ5/LENeebVURVzbsql90JeT43vDyKEsGtNSk7Xu";
 
         const defaultConfig = {
             title: "A+ Dental Center",
             subtitle: "مركز A+ لطب وتجميل الأسنان - أحدث التقنيات لرعاية ابتسامتك",
-            kafrLoc: "https://maps.google.com",
-            reviewUrl: "https://search.google.com/local/writereview?placeid=ChIJSSEBbgCr9xQRB4ZlYLghEEo",
-            whatsapp: "201000000000",
-            facebook: "https://www.facebook.com/aplusdentalcenter",
-            instagram: "https://www.instagram.com/aplus.77",
-            tiktok: "https://www.tiktok.com/@aplus.77",
+            kafrLoc: "",
+            reviewUrl: "",
+            whatsapp: "",
+            facebook: "",
+            instagram: "",
+            tiktok: "",
             logoBase64: "",
             adminPass: "Aplus2026"
         };
 
         let currentConfig = Object.assign({}, defaultConfig);
 
-        function loadConfig() {
-            const savedVersion = localStorage.getItem('dental_config_version');
-            
-            // إذا كان الإصدار قديم، قم بتحديث الكاش محلياً ليعتمد التحديثات الجديدة فوراً
-            if (savedVersion !== CONFIG_VERSION) {
-                localStorage.removeItem('dental_nfc_global_config');
-                localStorage.setItem('dental_config_version', CONFIG_VERSION);
+        async function fetchCloudConfig() {
+            if (!JSONBIN_ID || JSONBIN_ID.includes("ضع_هنا")) {
+                applyConfigToUI();
+                return;
             }
 
-            const saved = localStorage.getItem('dental_nfc_global_config');
-            if (saved) {
-                try {
-                    const parsed = JSON.parse(saved);
-                    currentConfig = Object.assign({}, defaultConfig, parsed);
-                } catch(e) {
-                    currentConfig = Object.assign({}, defaultConfig);
+            try {
+                const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_ID}/latest`, {
+                    headers: {
+                        'X-Master-Key': JSONBIN_SECRET_KEY
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data && data.record) {
+                        currentConfig = Object.assign({}, defaultConfig, data.record);
+                        applyConfigToUI();
+                    }
                 }
-            } else {
-                currentConfig = Object.assign({}, defaultConfig);
+            } catch (err) {
+                console.error("خطأ في جلب البيانات السحابية:", err);
+                applyConfigToUI();
             }
-            applyConfigToUI();
+        }
+
+        async function updateCloudConfig(newConfigData) {
+            if (!JSONBIN_ID || JSONBIN_ID.includes("ضع_هنا")) return false;
+
+            try {
+                const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_ID}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': JSONBIN_SECRET_KEY
+                    },
+                    body: JSON.stringify(newConfigData)
+                });
+
+                return response.ok;
+            } catch (err) {
+                console.error("خطأ في حفظ البيانات سحابياً:", err);
+                return false;
+            }
         }
 
         function setValidHref(elementId, url) {
             const el = document.getElementById(elementId);
             if (!el) return;
-            if (url && url.trim() !== "" && url !== "#" && url !== "javascript:void(0)") {
+            if (url && url.trim() !== "" && url !== "#") {
                 el.href = url;
                 el.removeAttribute('tabindex');
                 el.classList.remove('opacity-50', 'pointer-events-none');
@@ -388,7 +412,7 @@
         }
 
         function applyConfigToUI() {
-            document.getElementById('displayTitle').innerText = currentConfig.title || defaultConfig.title;
+            document.getElementById('displayTitle').innerText = currentConfig.title;
             
             const defaultIcon = document.getElementById('defaultIcon');
             const customLogoImg = document.getElementById('customLogoImg');
@@ -402,14 +426,13 @@
                 defaultIcon.classList.remove('hidden');
             }
 
-            setValidHref('btnLocKafr', currentConfig.kafrLoc || defaultConfig.kafrLoc);
-            setValidHref('btnReview', currentConfig.reviewUrl || defaultConfig.reviewUrl);
-            setValidHref('btnFacebook', currentConfig.facebook || defaultConfig.facebook);
-            setValidHref('btnInstagram', currentConfig.instagram || defaultConfig.instagram);
-            setValidHref('btnTiktok', currentConfig.tiktok || defaultConfig.tiktok);
+            setValidHref('btnLocKafr', currentConfig.kafrLoc);
+            setValidHref('btnReview', currentConfig.reviewUrl);
+            setValidHref('btnFacebook', currentConfig.facebook);
+            setValidHref('btnInstagram', currentConfig.instagram);
+            setValidHref('btnTiktok', currentConfig.tiktok);
 
-            const waNum = currentConfig.whatsapp || defaultConfig.whatsapp;
-            const cleanWa = waNum ? waNum.replace(/[^0-9]/g, '') : '';
+            const cleanWa = currentConfig.whatsapp ? currentConfig.whatsapp.replace(/[^0-9]/g, '') : '';
             setValidHref('btnWhatsapp', cleanWa ? `https://wa.me/${cleanWa}` : '');
             setValidHref('btnBooking', cleanWa ? `https://wa.me/${cleanWa}?text=${encodeURIComponent('مرحباً A+ Dental Center، أرغب في الاستفسار وحجز موعد للكشف')}` : '');
             setValidHref('btnPhone', cleanWa ? `tel:+${cleanWa}` : '');
@@ -429,7 +452,7 @@
         function verifyAdminPass(e) {
             if (e) e.preventDefault();
             const inputPass = document.getElementById('adminPasswordInput').value;
-            if (inputPass === (currentConfig.adminPass || defaultConfig.adminPass)) {
+            if (inputPass === currentConfig.adminPass) {
                 closeAdminLogin();
                 populateAdminFields();
                 document.getElementById('adminPanelModal').classList.remove('hidden');
@@ -454,22 +477,27 @@
             document.getElementById('inputNewPassword').value = '';
         }
 
-        function resetLogo(e) {
+        async function resetLogo(e) {
             if (e) e.preventDefault();
             currentConfig.logoBase64 = "";
             document.getElementById('inputLogoFile').value = "";
-            localStorage.setItem('dental_nfc_global_config', JSON.stringify(currentConfig));
+            showToast("جاري التحديث...");
+            await updateCloudConfig(currentConfig);
             applyConfigToUI();
             showToast("تم إزالة اللوجو المخصص");
         }
 
-        function saveAdminSettings(e) {
+        async function saveAdminSettings(e) {
             if (e) e.preventDefault();
+            
+            const btnSave = document.getElementById('btnSaveConfig');
+            btnSave.innerText = "جاري الحفظ بالسيرفر...";
+            btnSave.disabled = true;
 
             const fileInput = document.getElementById('inputLogoFile');
             const newPass = document.getElementById('inputNewPassword').value.trim();
 
-            const performSave = (logoData) => {
+            const performSave = async (logoData) => {
                 const titleVal = document.getElementById('inputTitle').value.trim();
                 const kafrVal = document.getElementById('inputKafrLoc').value.trim();
                 const revVal = document.getElementById('inputReviewUrl').value.trim();
@@ -494,20 +522,27 @@
                     currentConfig.adminPass = newPass;
                 }
 
-                localStorage.setItem('dental_nfc_global_config', JSON.stringify(currentConfig));
-                applyConfigToUI();
-                closeAdminPanel();
-                showToast("تم حفظ التغييرات بنجاح!");
+                const success = await updateCloudConfig(currentConfig);
+                btnSave.innerText = "حفظ والتحديث المباشر";
+                btnSave.disabled = false;
+
+                if (success) {
+                    applyConfigToUI();
+                    closeAdminPanel();
+                    showToast("تم الحفظ بالسيرفر بنجاح!");
+                } else {
+                    showToast("فشل الحفظ سحابياً، تحقق من الـ Keys!");
+                }
             };
 
             if (fileInput.files && fileInput.files[0]) {
                 const reader = new FileReader();
-                reader.onload = function(evt) {
-                    performSave(evt.target.result);
+                reader.onload = async function(evt) {
+                    await performSave(evt.target.result);
                 };
                 reader.readAsDataURL(fileInput.files[0]);
             } else {
-                performSave(null);
+                await performSave(null);
             }
         }
 
@@ -533,7 +568,7 @@
             setTimeout(() => { toast.classList.add('hidden'); }, 2500);
         }
 
-        window.onload = loadConfig;
+        window.onload = fetchCloudConfig;
     </script>
 </body>
 </html>
