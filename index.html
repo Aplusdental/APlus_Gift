@@ -180,7 +180,7 @@
         <div class="space-y-3 mb-6">
             <h2 class="text-xs font-bold text-aplusCyan-400 uppercase tracking-wider px-1">تواصل معنا عبر المنصات</h2>
             
-            <div class="grid grid-cols-4 gap-2">
+            <div class="grid grid-cols-3 sm:grid-cols-5 gap-2">
                 <!-- WhatsApp -->
                 <a id="btnWhatsapp" href="#" target="_blank" class="glass-card rounded-xl p-2.5 flex flex-col items-center justify-center gap-1.5 hover:bg-aplusNavy-800/40 hover:border-emerald-500/50 transition-all group">
                     <div class="w-9 h-9 rounded-full bg-emerald-600/20 text-emerald-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
@@ -211,6 +211,14 @@
                         <i class="fa-brands fa-instagram"></i>
                     </div>
                     <span class="text-[11px] font-medium text-slate-200">انستغرام</span>
+                </a>
+
+                <!-- TikTok Link -->
+                <a id="btnTiktok" href="#" target="_blank" class="glass-card rounded-xl p-2.5 flex flex-col items-center justify-center gap-1.5 hover:bg-aplusNavy-800/40 hover:border-slate-300/50 transition-all group">
+                    <div class="w-9 h-9 rounded-full bg-slate-100/10 text-slate-100 flex items-center justify-center text-base group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </div>
+                    <span class="text-[11px] font-medium text-slate-200">تيك توك</span>
                 </a>
             </div>
         </div>
@@ -300,6 +308,11 @@
                     <input type="text" id="inputInstagram" placeholder="https://www.instagram.com/aplus.77" class="w-full bg-aplusNavy-900/80 border border-aplusNavy-800 rounded-lg p-2.5 text-slate-100 focus:outline-none focus:border-aplusCyan-400 text-left dir-ltr">
                 </div>
 
+                <div>
+                    <label class="block text-slate-200 mb-1 flex items-center gap-1.5"><i class="fa-brands fa-tiktok text-slate-100"></i> رابط التيك توك</label>
+                    <input type="text" id="inputTiktok" placeholder="https://www.tiktok.com/@aplus.dental" class="w-full bg-aplusNavy-900/80 border border-aplusNavy-800 rounded-lg p-2.5 text-slate-100 focus:outline-none focus:border-aplusCyan-400 text-left dir-ltr">
+                </div>
+
                 <div class="border-t border-aplusNavy-800 pt-3 mt-2">
                     <label class="block text-slate-200 mb-1 flex items-center gap-1.5"><i class="fa-solid fa-key text-aplusCyan-400"></i> تغيير كلمة سر اللوحة</label>
                     <input type="password" id="inputNewPassword" placeholder="كلمة سر جديدة..." class="w-full bg-aplusNavy-900/80 border border-aplusNavy-800 rounded-lg p-2.5 text-slate-100 focus:outline-none focus:border-aplusCyan-400">
@@ -328,6 +341,7 @@
             whatsapp: "",
             facebook: "",
             instagram: "",
+            tiktok: "",
             logoBase64: "",
             adminPass: "dental2026"
         };
@@ -347,6 +361,7 @@
 
         function setValidHref(elementId, url) {
             const el = document.getElementById(elementId);
+            if (!el) return;
             if (url && url.trim() !== "" && url !== "#") {
                 el.href = url;
                 el.removeAttribute('tabindex');
@@ -376,6 +391,7 @@
             setValidHref('btnReview', currentConfig.reviewUrl);
             setValidHref('btnFacebook', currentConfig.facebook);
             setValidHref('btnInstagram', currentConfig.instagram);
+            setValidHref('btnTiktok', currentConfig.tiktok);
 
             const cleanWa = currentConfig.whatsapp ? currentConfig.whatsapp.replace(/[^0-9]/g, '') : '';
             setValidHref('btnWhatsapp', cleanWa ? `https://wa.me/${cleanWa}` : '');
@@ -418,6 +434,7 @@
             document.getElementById('inputWhatsapp').value = currentConfig.whatsapp || '';
             document.getElementById('inputFacebook').value = currentConfig.facebook || '';
             document.getElementById('inputInstagram').value = currentConfig.instagram || '';
+            document.getElementById('inputTiktok').value = currentConfig.tiktok || '';
             document.getElementById('inputNewPassword').value = '';
         }
 
@@ -443,6 +460,7 @@
                 const waVal = document.getElementById('inputWhatsapp').value.trim();
                 const fbVal = document.getElementById('inputFacebook').value.trim();
                 const igVal = document.getElementById('inputInstagram').value.trim();
+                const ttVal = document.getElementById('inputTiktok').value.trim();
 
                 if (titleVal !== "") currentConfig.title = titleVal;
                 if (kafrVal !== "") currentConfig.kafrLoc = kafrVal;
@@ -450,6 +468,7 @@
                 if (waVal !== "") currentConfig.whatsapp = waVal;
                 if (fbVal !== "") currentConfig.facebook = fbVal;
                 if (igVal !== "") currentConfig.instagram = igVal;
+                if (ttVal !== "") currentConfig.tiktok = ttVal;
                 
                 if (logoData !== null) {
                     currentConfig.logoBase64 = logoData;
