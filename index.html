@@ -333,7 +333,6 @@
     </div>
 
     <script>
-        // الـ Data الأساسية المدمجة في الكود (السحابية لجميع الأجهزة)
         const defaultConfig = {
             title: "A+ Dental Center",
             subtitle: "مركز A+ لطب وتجميل الأسنان - أحدث التقنيات لرعاية ابتسامتك",
@@ -350,11 +349,11 @@
         let currentConfig = Object.assign({}, defaultConfig);
 
         function loadConfig() {
-            // نتحقق أولاً من التخزين المحلي، وإن لم يوجد نعتمد الـ defaultConfig مباشرة
             const saved = localStorage.getItem('dental_nfc_global_config');
             if (saved) {
                 try {
                     const parsed = JSON.parse(saved);
+                    // دمج البيانات الافتراضية مع المخزنة لمنع فقدان الروابط الأساسية
                     currentConfig = Object.assign({}, defaultConfig, parsed);
                 } catch(e) {
                     currentConfig = Object.assign({}, defaultConfig);
@@ -368,7 +367,7 @@
         function setValidHref(elementId, url) {
             const el = document.getElementById(elementId);
             if (!el) return;
-            if (url && url.trim() !== "" && url !== "#") {
+            if (url && url.trim() !== "" && url !== "#" && url !== "javascript:void(0)") {
                 el.href = url;
                 el.removeAttribute('tabindex');
                 el.classList.remove('opacity-50', 'pointer-events-none');
@@ -379,7 +378,7 @@
         }
 
         function applyConfigToUI() {
-            document.getElementById('displayTitle').innerText = currentConfig.title;
+            document.getElementById('displayTitle').innerText = currentConfig.title || defaultConfig.title;
             
             const defaultIcon = document.getElementById('defaultIcon');
             const customLogoImg = document.getElementById('customLogoImg');
@@ -393,13 +392,14 @@
                 defaultIcon.classList.remove('hidden');
             }
 
-            setValidHref('btnLocKafr', currentConfig.kafrLoc);
-            setValidHref('btnReview', currentConfig.reviewUrl);
-            setValidHref('btnFacebook', currentConfig.facebook);
-            setValidHref('btnInstagram', currentConfig.instagram);
-            setValidHref('btnTiktok', currentConfig.tiktok);
+            setValidHref('btnLocKafr', currentConfig.kafrLoc || defaultConfig.kafrLoc);
+            setValidHref('btnReview', currentConfig.reviewUrl || defaultConfig.reviewUrl);
+            setValidHref('btnFacebook', currentConfig.facebook || defaultConfig.facebook);
+            setValidHref('btnInstagram', currentConfig.instagram || defaultConfig.instagram);
+            setValidHref('btnTiktok', currentConfig.tiktok || defaultConfig.tiktok);
 
-            const cleanWa = currentConfig.whatsapp ? currentConfig.whatsapp.replace(/[^0-9]/g, '') : '';
+            const waNum = currentConfig.whatsapp || defaultConfig.whatsapp;
+            const cleanWa = waNum ? waNum.replace(/[^0-9]/g, '') : '';
             setValidHref('btnWhatsapp', cleanWa ? `https://wa.me/${cleanWa}` : '');
             setValidHref('btnBooking', cleanWa ? `https://wa.me/${cleanWa}?text=${encodeURIComponent('مرحباً A+ Dental Center، أرغب في الاستفسار وحجز موعد للكشف')}` : '');
             setValidHref('btnPhone', cleanWa ? `tel:+${cleanWa}` : '');
@@ -419,7 +419,7 @@
         function verifyAdminPass(e) {
             if (e) e.preventDefault();
             const inputPass = document.getElementById('adminPasswordInput').value;
-            if (inputPass === currentConfig.adminPass) {
+            if (inputPass === (currentConfig.adminPass || defaultConfig.adminPass)) {
                 closeAdminLogin();
                 populateAdminFields();
                 document.getElementById('adminPanelModal').classList.remove('hidden');
@@ -487,7 +487,7 @@
                 localStorage.setItem('dental_nfc_global_config', JSON.stringify(currentConfig));
                 applyConfigToUI();
                 closeAdminPanel();
-                showToast("تم حفظ التغييرات محلياً!");
+                showToast("تم حفظ وتحديث التغييرات بنجاح!");
             };
 
             if (fileInput.files && fileInput.files[0]) {
