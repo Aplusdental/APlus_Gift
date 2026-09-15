@@ -79,12 +79,12 @@
             </div>
             
             <h1 id="displayTitle" class="text-2xl font-bold cyan-gradient-text mb-1">A+ Dental Center</h1>
-            <p id="displaySubtitle" class="text-xs text-slate-300/80">مركز +A لطب وتجميل الأسنان - أحدث التقنيات لرعاية ابتسامتك</p>
+            <p id="displaySubtitle" class="text-xs text-slate-300/80">مركز A+ لطب وتجميل الأسنان - أحدث التقنيات لرعاية ابتسامتك</p>
             
             <div class="mt-4 p-3 rounded-xl glass-card border border-aplusCyan-400/20 max-w-xs mx-auto">
                 <p class="text-xs text-aplusCyan-300 leading-relaxed font-medium">
                     <i class="fa-regular fa-clock text-aplusGold-400 ml-1"></i>
-                    مواعيد العمل: يومياً عدا الجمعه من 11ص : 11م
+                    مواعيد العمل: يومياً عدا الجمعة من 11 ص : 11 م
                 </p>
             </div>
         </div>
@@ -108,7 +108,7 @@
         <!-- Services Grid -->
         <div class="space-y-3 mb-6">
             <h2 class="text-xs font-bold text-aplusCyan-400 uppercase tracking-wider px-1 flex items-center gap-1.5">
-                <i class="fa-solid fa-stethoscope text-aplusCyan-300"></i> خدمات مركز +A
+                <i class="fa-solid fa-stethoscope text-aplusCyan-300"></i> خدمات مركز A+
             </h2>
             
             <div class="grid grid-cols-2 gap-2.5 text-xs">
@@ -310,7 +310,7 @@
 
                 <div>
                     <label class="block text-slate-200 mb-1 flex items-center gap-1.5"><i class="fa-brands fa-tiktok text-slate-100"></i> رابط التيك توك</label>
-                    <input type="text" id="inputTiktok" placeholder="https://www.tiktok.com/@aplus.dental" class="w-full bg-aplusNavy-900/80 border border-aplusNavy-800 rounded-lg p-2.5 text-slate-100 focus:outline-none focus:border-aplusCyan-400 text-left dir-ltr">
+                    <input type="text" id="inputTiktok" placeholder="https://www.tiktok.com/@aplus.77" class="w-full bg-aplusNavy-900/80 border border-aplusNavy-800 rounded-lg p-2.5 text-slate-100 focus:outline-none focus:border-aplusCyan-400 text-left dir-ltr">
                 </div>
 
                 <div class="border-t border-aplusNavy-800 pt-3 mt-2">
@@ -333,28 +333,34 @@
     </div>
 
     <script>
+        // الـ Data الأساسية المدمجة في الكود (السحابية لجميع الأجهزة)
         const defaultConfig = {
             title: "A+ Dental Center",
             subtitle: "مركز A+ لطب وتجميل الأسنان - أحدث التقنيات لرعاية ابتسامتك",
-            kafrLoc: "",
-            reviewUrl: "",
-            whatsapp: "",
-            facebook: "",
-            instagram: "",
-            tiktok: "",
+            kafrLoc: "https://maps.google.com",
+            reviewUrl: "https://search.google.com/local/writereview?placeid=ChIJSSEBbgCr9xQRB4ZlYLghEEo",
+            whatsapp: "201000000000",
+            facebook: "https://www.facebook.com/aplusdentalcenter",
+            instagram: "https://www.instagram.com/aplus.77",
+            tiktok: "https://www.tiktok.com/@aplus.77",
             logoBase64: "",
-            adminPass: "dental2026"
+            adminPass: "Aplus2026"
         };
 
         let currentConfig = Object.assign({}, defaultConfig);
 
         function loadConfig() {
+            // نتحقق أولاً من التخزين المحلي، وإن لم يوجد نعتمد الـ defaultConfig مباشرة
             const saved = localStorage.getItem('dental_nfc_global_config');
             if (saved) {
                 try {
                     const parsed = JSON.parse(saved);
                     currentConfig = Object.assign({}, defaultConfig, parsed);
-                } catch(e) {}
+                } catch(e) {
+                    currentConfig = Object.assign({}, defaultConfig);
+                }
+            } else {
+                currentConfig = Object.assign({}, defaultConfig);
             }
             applyConfigToUI();
         }
@@ -481,7 +487,7 @@
                 localStorage.setItem('dental_nfc_global_config', JSON.stringify(currentConfig));
                 applyConfigToUI();
                 closeAdminPanel();
-                showToast("تم حفظ وتحديث التغييرات بنجاح!");
+                showToast("تم حفظ التغييرات محلياً!");
             };
 
             if (fileInput.files && fileInput.files[0]) {
